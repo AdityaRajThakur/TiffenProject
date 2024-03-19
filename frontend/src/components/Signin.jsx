@@ -32,7 +32,7 @@ export function Signin(){
         <input className = "rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm mb-3" type = "text" placeholder = "Enter price"  onChange = {(e)=>{
           setPrice(parseInt(e.target.value)) ; 
         }}/>    
-    <div className = "rounded-md text-center shadow-md bg-green-200 my-2" onClick = {async ()=>{
+    <div className = "rounded-md text-center cursor-pointer shadow-md bg-green-200 my-2" onClick = {async ()=>{
             const res = await axios({
             method : 'post' , 
             url : 'http://localhost:8000/AuntyTiffen/user/create',

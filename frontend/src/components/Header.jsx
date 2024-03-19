@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 
 export function Header(){
   const navigate = useNavigate() ; 
-  return <div className = 'bg-lime-200 flex justify-between p-5 rounded-md mb-2 shadow-lg'> 
+  return <div className = 'bg-green-200 flex justify-between p-5 rounded-md mb-2 shadow-lg'> 
     <div className = "bg-green-600/20 border rounded-md shadow-md" onClick ={()=>{
       navigate('/dashboard') ; 
     }}>

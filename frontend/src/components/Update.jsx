@@ -11,6 +11,7 @@ export function Update(){
   const [cost , setCost] = useState(0) ; 
   const id = serachParams.get('id') ; 
   const username = serachParams.get("username") ; 
+  const [lastModified , setlastModified] = useState("") ; 
   //console.log(id , " " , username , " ", preCount) ;
   const res = useCallback(()=>{
     const ans  = count * 60 ; 
@@ -24,10 +25,15 @@ export function Update(){
         method : "get" , 
         url : `http://localhost:8000/AuntyTiffen/user/find?id=${id}`,
       }); 
-      //console.log(user.data['user']) ;
+      
+      const date = new Date(user.data['user'].lastModified)
+      const res = `${date.getDate()} ${parseInt(date.getMonth()) + 1 } ${date.getFullYear()}` ; 
+      console.log(user.data['user']) ;
+      console.log(typeof(user.data['user'].lastModified)) ; 
       setCount(()=>user.data['user'].count) ; 
       setPrevCount(()=> user.data['user'].count) ; 
-      setCost(()=>user.data['user'].price) ; 
+      setCost(()=>user.data['user'].price) ;
+      setlastModified(()=>res); 
     }
     fetchData() ; 
   }, []) ; 
@@ -36,6 +42,7 @@ export function Update(){
       <h1> Update info about - {username.toUpperCase()} </h1> 
     </div> 
     <div className = "flex justify-center items-center"> <div className = "bg-green-200 p-1 rounded-md border shadow-md "> Previous Count of Tiffen is {preCount} </div>  </div> 
+  <div className = "flex justify-center items-center"> <div className = "bg-green-200 p-1 rounded-md border shadow-md mt-2"> lastModified Date is {lastModified} </div>  </div>
     <div className = "flex justify-center items-center ">  
   <SigninHeader Heading = {`Total Amount Deposited  ` + String(cost)}/>
     <div className = "pr-12 flex ">
